@@ -37,11 +37,14 @@
 
 /* ----------------------- Modbus includes ----------------------------------*/
 #include "mb.h"
+#include "mbconfig.h"
 #include "mbrtu.h"
 #include "mbframe.h"
 
 #include "mbcrc.h"
 #include "mbport.h"
+
+#if MB_RTU_ENABLED > 0
 
 /* ----------------------- Defines ------------------------------------------*/
 #define MB_SER_PDU_SIZE_MIN     4       /*!< Minimum size of a Modbus RTU frame. */
@@ -353,3 +356,5 @@ xMBRTUTimerT35Expired( void )
 
     return xNeedPoll;
 }
+
+#endif

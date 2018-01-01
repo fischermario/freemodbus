@@ -183,8 +183,6 @@ xMBPortTCPPool( void )
     fd_set          fread;
     struct timeval  tval;
 
-    tval.tv_sec = 0;
-    tval.tv_usec = 5000;
     int             ret;
     USHORT          usLength;
 
@@ -211,6 +209,8 @@ xMBPortTCPPool( void )
     {
         FD_ZERO( &fread );
         FD_SET( xClientSocket, &fread );
+        tval.tv_sec = 0;
+        tval.tv_usec = 5000;
         if( ( ( ret = select( xClientSocket + 1, &fread, NULL, NULL, &tval ) ) == SOCKET_ERROR )
             || !ret )
         {
